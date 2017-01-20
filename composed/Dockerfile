@@ -32,6 +32,7 @@ rm -rf /var/lib/apt/lists/*
 RUN wget --quiet --no-cookies https://archive.apache.org/dist/tomcat/tomcat-7/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -O /tmp/tomcat.tgz && \
 tar xzvf /tmp/tomcat.tgz -C /opt && \
 mv /opt/apache-tomcat-${TOMCAT_VERSION} /opt/tomcat && \
+echo 'CATALINA_OPTS="-Xms512m -Xmx1024m"' | sudo tee --append /opt/tomcat/bin/setenv.sh && \
 rm /tmp/tomcat.tgz && \
 rm -rf /opt/tomcat/webapps/examples && \
 rm -rf /opt/tomcat/webapps/docs && \
